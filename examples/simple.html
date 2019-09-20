@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bleted - Simple Implementation</title>
+</head>
+<body>
+    <button>Start</button>
+    <p id="out"></p>
+
+    <script src="../src/bleted-lib.js"></script>
+    <script>
+        document.querySelector('button').addEventListener('click', (event) => {
+            bleted_observeNotifications('4677062c-ad02-4034-9abf-98581772427c',
+                'dc13b36a-3499-46b0-ac11-5ac0173c4cc5',
+                function (event) {
+                    var value = event.target.value.getUint8(0);
+                    console.log('value=' + value);
+                    document.getElementById('out').innerHTML = 'value = ' + value;
+                }).catch((error) => {
+                console.log('error: ' + error);
+                document.getElementById('out').innerHTML = 'Error: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>
